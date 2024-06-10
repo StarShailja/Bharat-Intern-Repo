@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/swiper-bundle.min.css">
+        <link rel="server" href="node.js"></link>
+        <title>Global Eye</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header_content">
+                <a href="#" class="logo">
+                <img src="download (5).svg" alt="logo" class="logo_img">
+                 </a>
+                <nav class="nav">
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                        <a href="#" class="nav_link">Products</a>
+                        </li>
+                        <li class="nav_item">
+                        <a href="#" class="nav_link">Resources</a>
+                        </li>
+                        <li class="nav_item">
+                        <a href="#" class="nav_link">Join Us</a>
+                         </li>
+                </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <section class="section">
+                <button class="button" style="vertical-align:text-top"><span>Create Blog</span></button>
+        <img src="Sandy_Gen-03_Single-07.jpg" alt="image" height="500" width="500" class="center">
+                </a>
+            </section>
+
+
+        <section class="section">
+            <br>
+            <br>
+           <h1 class="heading">Recent Blogs</h1>
+            <h2 class="heading">Weather in the best mood,is it?</h2>
+        <h2>Ugh!!It is veryy hot.This summer is a whole different struggle ,a struggle for survival.Every year with plans of trips,vactions or even developing a new skill seems off the board cause we are stuck right in the middle of a heat wave or maybe adapting to a new temperature range.
+           yeah ,you read me ...it's 40 to 50.
+           most of you might wonder incase you're not okay with netflix and the whole chill zone as to why are we all facing this damn heat.
+           Well its time for a deep dig in,so Just grab a bowl of ice cream or something really cold to face all the heat in the upcoming information.
+           people say its the el nino (sounds like a spanish ghost to me) but actually means a little boy.
+           Nothing new little boys who do not listen to their mum often are a nuisance causing troubles and here we are experiencing one of them.
+         <br>
+         <br>
+           To me planning is the key,the right planning to grow,create and advance keeping in mind the health of our mother
+           "EARTH" is what should be the goal of every human. The adavancement in science and technology has been great
+            but somewhere we have lagged behind in taking care of our home.The vast deforestation , industrialization and
+           the irrational use of plastics has all lead to deterioration of this heaven.
+           The consequences of all these misdoings are the heat waves,melting icebergs,lack of water,no fresh air,etc.
+           It's time for the world to ponder and act in all those ways that helps conserve the biggest living being, i know,
+           Earth.Enough of my opinion on this ..but i really hope we genuinely come together to save earth, the biggest and most important
+           notion for this generation.
+
+        </section>
+        <section class="section">
+            <br>
+            <h2 class="heading1">Trending Posts</h2>
+            <div class="card__container swiper">
+                <div class="card__content">
+                    <div class="swiper-wrapper">
+                        <article class="card__article swiper-slide">
+                            <div class="card__image">
+                                <img src="environment day.jpg" alt="image" class="card__img" height="200" width="400">
+                                <div class="card__shadow"></div>
+                            </div>
+                            <div class="card__data">
+                                <p class="card__description">
+                                    How did the world celebrate the green day?
+                                </p>
+                                <a href="#" class="card__button">View More</a>
+                            </div>
+                        </article>
+                        <article class="card__article swiper-slide">
+                            <div class="card__image">
+                                    <img src="stock market.jpg" alt="image" class="card__img" height="200"  width="400">
+                                
+                                <div class="card__shadow"></div>
+                            </div>
+                            <div class="card__data">
+                                <p class="card__description">
+                                    Rise and Fall in stocks
+
+                                </p>
+                                <a href="#" class="card__button">View More</a>
+                            </div>
+                        </article>
+                        <article class="card__article swiper-slide">
+                            <div class="card__image">
+                                <img src="heat wave2.jpg" alt="image" class="card__img" height="200" width="400">
+                                <div class="card__shadow"></div>
+                            </div>
+                            <div class="card__data">
+                                <p class="card__description">
+                                    Weather in the best mood,is it?
+                                </p>
+                                <a href="#" class="card__button">View More</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="swiper-button-prev">
+
+                </div>
+                <div class="swiper-button-next">
+
+                </div>
+            </div>
+
+        </section>
+        </main>
+
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="site.js"></script>
+    <script>
+        const form = document.getElementById('postForm');
+        form.addEventListener('submit', event => {
+          event.preventDefault();
+  
+          const title = document.getElementById('title').value;
+          const content = document.getElementById('content').value;
+  
+          fetch('/posts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, content })
+          })
+          .then(response => response.json())
+          .then(post => {
+            const postsList = document.getElementById('postsList');
+            const li = document.createElement('li');
+            li.textContent = `${post.title}: ${post.content}`;
+            postsList.appendChild(li);
+          });
+        });
+  
+        fetch('/posts')
+          .then(response => response.json())
+          .then(posts => {
+            const postsList = document.getElementById('postsList');
+            posts.forEach(post => {
+              const li = document.createElement('li');
+              li.textContent = `${post.title}: ${post.content}`;
+              postsList.appendChild(li);
+            });
+          });
+      </script>
+    </body>
+</html>
+
+
+  
